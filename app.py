@@ -11,10 +11,18 @@ mongo = PyMongo(app)
 
 @app.route('/')
 def index():
+        
+    tasks = mongo.db.tasks
+    results = tasks.find({'recipe_course' : 'Main'})
     
-    results = mongo.db.tasks.find({"recipe_course" : "Main"})
+    for r in results:
+        print(r["recipe_course"])
+    return print(r["recipe_course"])  
     
-    print(results)
+    
+    
+    
+   
 
 if __name__ == '__main__':
     app.run(debug=True)    
